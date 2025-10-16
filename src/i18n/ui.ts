@@ -39,3 +39,21 @@ export const routes: Record<
     pizza: "pizza",
   },
 };
+
+export const getRoutesAsSitemapLinks = (
+  site: string,
+  locales: Record<LanguageCode, string>,
+) => {
+  const keys = Object.keys(Object.values(routes)[0]);
+
+  return keys.map((key) => {
+    const base = { lang: locales[defaultLang], url: `${site}/${key}/` };
+
+    const others = Object.entries(routes).map(([lang, routeMap]) => ({
+      lang: locales[lang as LanguageCode],
+      url: `${site}/${lang}/${routeMap[key]}/`,
+    }));
+
+    return [base, ...others].toSorted((a, b) => a.url.localeCompare(b.url));
+  });
+};

@@ -1,5 +1,5 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { ui, defaultLang, routes, type LanguageCode } from "./ui";
+import { defaultLang, routes, ui, type LanguageCode } from "./ui";
 
 export function getLangFromUrl(url: URL) {
   const [, lang] = url.pathname.split("/");
