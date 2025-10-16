@@ -1,0 +1,11 @@
+---
+import { useTranslations } from "../../i18n/utils";
+import Layout from "../../layouts/Layout.astro";
+
+const lang = "es";
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang}>
+  <h1>{t("nav.pizza")}</h1>
+</Layout>

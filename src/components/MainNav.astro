@@ -1,0 +1,40 @@
+---
+import { type LanguageCode } from "../i18n/ui";
+import { useTranslatedPath, useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang: LanguageCode;
+}
+const { lang } = Astro.props;
+
+const t = useTranslations(lang);
+
+const routes = [
+  { path: "", label: t("nav.home") },
+  { path: "about", label: t("nav.about") },
+  { path: "pizza", label: t("nav.pizza") },
+] as const satisfies { path: string; label: string }[];
+---
+
+<ul>
+  {
+    routes.map((item) => {
+      const translatePath = useTranslatedPath(lang);
+      return (
+        <li>
+          <a href={translatePath(item.path)}>{item.label}</a>
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  ul {
+    margin: 0;
+    padding-block: 1.25rem;
+  }
+  a {
+    color: #eeeeee;
+  }
+</style>
