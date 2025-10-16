@@ -9,7 +9,6 @@ const locales = {
   es: "es-ES",
   "pt-br": "pt-BR",
 };
-const defaultLocale = "en";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,7 +17,7 @@ export default defineConfig({
 
   i18n: {
     locales: Object.keys(locales),
-    defaultLocale,
+    defaultLocale: "en",
     routing: {
       prefixDefaultLocale: false,
     },
@@ -27,7 +26,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: {
-        defaultLocale,
+        defaultLocale: "en",
         locales,
       },
       serialize(item) {
